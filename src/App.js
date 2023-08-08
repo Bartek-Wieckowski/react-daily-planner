@@ -1,7 +1,12 @@
+import { useDailyPlanner } from './context/DailyPlannerContext';
+
 function App() {
+  const { isDarkMode, handleDarkMode } = useDailyPlanner();
   return (
-    <div className="App">
-      <button className="bg-danger">test</button>
+    <div className="App" data-bs-theme={isDarkMode ? 'dark' : 'light'}>
+      <button className="bg-danger" onClick={() => handleDarkMode()}>
+        test
+      </button>
     </div>
   );
 }
