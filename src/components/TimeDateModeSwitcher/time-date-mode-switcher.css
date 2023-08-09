@@ -1,0 +1,14 @@
+.time-date-mode-switcher-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 16px;
+  line-height: 1;
+  font-size: 26px;
+}
+.btn-fake-dark-mode {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  filter: invert(1);
+}
