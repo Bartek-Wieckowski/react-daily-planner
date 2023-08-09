@@ -12,6 +12,7 @@ export default function App() {
         <div className="row">
           <div className="col">
             <div className="wrapper">
+              <h1>Daily Plan 📝</h1>
               <ListItems />
             </div>
           </div>
