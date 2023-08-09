@@ -1,14 +1,13 @@
 import ListItems from './components/ListItems/ListItems';
+import TimeDateModeSwitcher from './components/TimeDateModeSwitcher/TimeDateModeSwitcher';
 import { useDailyPlanner } from './context/DailyPlannerContext';
 
 export default function App() {
-  const { isDarkMode, handleDarkMode } = useDailyPlanner();
-
+  const { isDarkMode } = useDailyPlanner();
   return (
     <div className={`app ${isDarkMode ? 'fake-dark-mode' : ''}`}>
-      <button className="btn-fake-dark-mode" onClick={() => handleDarkMode()}>
-        {isDarkMode ? '🌙' : '☀️'}
-      </button>
+      <TimeDateModeSwitcher />
+
       <div className="container">
         <div className="row">
           <div className="col">
