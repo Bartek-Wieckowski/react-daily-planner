@@ -1,3 +1,21 @@
+:root {
+  --transition: all 0.3s linear;
+  --spacing: 0.1rem;
+  --radius: 0.25rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --max-width: 1170px;
+  --fixed-width: 620px;
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,8 +24,30 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.fake-dark-mode {
+  filter: invert(100%);
+  transition: all 0.5s;
+}
+.fake-dark-mode .wrapper {
+  box-shadow: var(--dark-shadow);
+}
+.app {
+  width: 100%;
+  height: 100vh;
+  background: white;
+  color: black;
+}
+.wrapper {
+  width: 60%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--light-shadow);
+  transition: var(--transition);
+  border-radius: var(--radius);
 }
