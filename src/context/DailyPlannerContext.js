@@ -60,6 +60,11 @@ function reducer(state, action) {
         ...state,
         myDailyTodoList: [...state.myDailyTodoList, action.payload],
       };
+    case 'item/changeStatus':
+      return {
+        ...state,
+        myDailyTodoList: [...state.myDailyTodoList, action.payload],
+      };
 
     default:
       throw new Error('Unknown action');
@@ -80,10 +85,26 @@ function DailyPlannerProvider({ children }) {
     dispatch({ type: 'item/created', payload: newItem });
     setMyDailyTodoList([...myDailyTodoList, newItem]);
   }
+  function changeStatusItem(id) {
+    dispatch({ type: 'item/changeStatus', payload: id });
+    setMyDailyTodoList((myDailyTodoList) =>
+      myDailyTodoList.map((todoItem) =>
+        todoItem.id === id
+          ? { ...todoItem, status: !todoItem.status }
+          : todoItem
+      )
+    );
+  }
 
   return (
     <DailyPlannerContext.Provider
-      value={{ isDarkMode, handleDarkMode, createdItem, myDailyTodoList }}
+      value={{
+        myDailyTodoList,
+        isDarkMode,
+        handleDarkMode,
+        createdItem,
+        changeStatusItem,
+      }}
     >
       {children}
     </DailyPlannerContext.Provider>
