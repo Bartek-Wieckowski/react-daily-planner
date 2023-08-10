@@ -1,0 +1,10 @@
+.item-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+.item-actions {
+  display: flex;
+  gap: 0.35rem;
+}

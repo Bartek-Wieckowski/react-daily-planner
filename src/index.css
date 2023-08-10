@@ -81,3 +81,17 @@ p {
   transition: var(--transition);
   border-radius: var(--radius);
 }
+.wrapper:hover {
+  box-shadow: var(--dark-shadow);
+}
+.form-control {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0 0.25rem;
+  border: unset;
+}
+.form-input {
+  max-width: 100%;
+  padding: 0 0.35rem;
+}
