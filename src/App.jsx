@@ -1,3 +1,4 @@
+import AddItem from './components/AddItem/AddItem';
 import ListItems from './components/ListItems/ListItems';
 import TimeDateModeSwitcher from './components/TimeDateModeSwitcher/TimeDateModeSwitcher';
 import { useDailyPlanner } from './context/DailyPlannerContext';
@@ -13,6 +14,7 @@ export default function App() {
           <div className="col">
             <div className="wrapper">
               <h1>Daily Plan 📝</h1>
+              <AddItem />
               <ListItems />
             </div>
           </div>
