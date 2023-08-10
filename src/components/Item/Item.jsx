@@ -6,8 +6,8 @@ export default function Item({ todo }) {
         <span>{todo.body}</span>
       </div>
       <div className="item-actions">
-        <button className="bg-info">EDIT</button>
-        <button className="bg-danger">DELETE</button>
+        <button className="btn text-white bg-info">EDIT</button>
+        <button className="btn text-white bg-danger">DELETE</button>
       </div>
     </li>
   );
