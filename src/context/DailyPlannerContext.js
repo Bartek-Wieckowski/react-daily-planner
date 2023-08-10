@@ -55,6 +55,11 @@ function reducer(state, action) {
   switch (action.type) {
     case 'onDarkMode':
       return { ...state, isDarkMode: !state.isDarkMode };
+    case 'item/created':
+      return {
+        ...state,
+        myDailyTodoList: [...state.myDailyTodoList, action.payload],
+      };
 
     default:
       throw new Error('Unknown action');
@@ -62,19 +67,23 @@ function reducer(state, action) {
 }
 
 function DailyPlannerProvider({ children }) {
-  const [{ isDarkMode, myDailyTodoList }, dispatch] = useReducer(
-    reducer,
-    initialState
+  const [{ isDarkMode }, dispatch] = useReducer(reducer, initialState);
+  const [myDailyTodoList, setMyDailyTodoList] = useLocalStorageState(
+    MY_DAILY_TODOLIST,
+    'todo'
   );
-  const [myTodos, setMyTodos] = useLocalStorageState(myDailyTodoList, 'todo');
 
   function handleDarkMode() {
     dispatch({ type: 'onDarkMode' });
   }
+  function createdItem(newItem) {
+    dispatch({ type: 'item/created', payload: newItem });
+    setMyDailyTodoList([...myDailyTodoList, newItem]);
+  }
 
   return (
     <DailyPlannerContext.Provider
-      value={{ isDarkMode, handleDarkMode, myTodos }}
+      value={{ isDarkMode, handleDarkMode, createdItem, myDailyTodoList }}
     >
       {children}
     </DailyPlannerContext.Provider>
