@@ -5,7 +5,7 @@ import './item.css';
 export default function Item({ todo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editingBody, setEditingBody] = useState(todo.body);
-  const { changeStatusItem, editedItem } = useDailyPlanner();
+  const { changeStatusItem, editedItem, deletedItem } = useDailyPlanner();
   const checkedTodo = todo.status === true ? 'checked' : '';
   function handleEditClick() {
     setIsEditing(true);
@@ -57,7 +57,12 @@ export default function Item({ todo }) {
           </button>
         )}
 
-        <button className="btn text-white bg-danger">DELETE</button>
+        <button
+          className="btn text-white bg-danger"
+          onClick={() => deletedItem(todo.id)}
+        >
+          DELETE
+        </button>
       </div>
     </li>
   );
