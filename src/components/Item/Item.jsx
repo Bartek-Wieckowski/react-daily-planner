@@ -31,7 +31,7 @@ export default function Item({ todo }) {
             onKeyDown={handleKeyDown}
           />
         ) : (
-          <label class="label-input">
+          <label className="label-input">
             <input
               type="checkbox"
               value={todo.status}
@@ -39,7 +39,7 @@ export default function Item({ todo }) {
               checked={checkedTodo}
             />
             {!checkedTodo ? <span>{todo.body}</span> : <del>{todo.body}</del>}
-            <span class="checkmark"></span>
+            <span className="checkmark"></span>
           </label>
         )}
       </div>
