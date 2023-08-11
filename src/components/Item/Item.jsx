@@ -14,6 +14,11 @@ export default function Item({ todo }) {
     editedItem(todo.id, editingBody);
     setIsEditing(false);
   }
+  function handleKeyDown(e) {
+    if (e.key === 'Enter') {
+      handleSaveClick();
+    }
+  }
 
   return (
     <li className="item-wrapper">
@@ -23,6 +28,7 @@ export default function Item({ todo }) {
             type="text"
             value={editingBody}
             onChange={(e) => setEditingBody(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
         ) : (
           <label class="label-input">
