@@ -87,6 +87,9 @@ function DailyPlannerProvider({ children }) {
     MY_DAILY_TODOLIST,
     'todo'
   );
+  const countCompletedTodoItem = myDailyTodoList.filter(
+    (todoItem) => todoItem.status
+  ).length;
 
   function handleDarkMode() {
     dispatch({ type: 'onDarkMode' });
@@ -128,6 +131,7 @@ function DailyPlannerProvider({ children }) {
         changeStatusItem,
         editedItem,
         deletedItem,
+        countCompletedTodoItem,
       }}
     >
       {children}
