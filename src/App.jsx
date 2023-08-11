@@ -1,5 +1,6 @@
 import AddItem from './components/AddItem/AddItem';
 import ListItems from './components/ListItems/ListItems';
+import ProgressBar from './components/ProgressBar/ProgressBar';
 import TimeDateModeSwitcher from './components/TimeDateModeSwitcher/TimeDateModeSwitcher';
 import { useDailyPlanner } from './context/DailyPlannerContext';
 
@@ -16,6 +17,7 @@ export default function App() {
               <h1>Daily Plan 📝</h1>
               <AddItem />
               <ListItems />
+              <ProgressBar />
             </div>
           </div>
         </div>
