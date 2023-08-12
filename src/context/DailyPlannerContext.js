@@ -150,6 +150,7 @@ function DailyPlannerProvider({ children }) {
   function deletedAllItems() {
     dispatch({ type: 'items/deleted' });
     setMyDailyTodoList([]);
+    notify('success', 'All task deleted');
   }
 
   function notify(type, message) {
