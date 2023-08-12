@@ -51,6 +51,7 @@ const DailyPlannerContext = createContext();
 const initialState = {
   isDarkMode: false,
   myDailyTodoList: MY_DAILY_TODOLIST,
+  sortingOptions: 'order',
 };
 
 function reducer(state, action) {
@@ -77,6 +78,8 @@ function reducer(state, action) {
         ...state,
         myDailyTodoList: [...state.myDailyTodoList, action.payload],
       };
+    case 'items/sort':
+      return { ...state, sortingOptions: action.payload };
     case 'items/deleted':
       return {
         ...state,
@@ -92,7 +95,10 @@ function reducer(state, action) {
 }
 
 function DailyPlannerProvider({ children }) {
-  const [{ isDarkMode }, dispatch] = useReducer(reducer, initialState);
+  const [{ isDarkMode, sortingOptions }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
   const [myDailyTodoList, setMyDailyTodoList] = useLocalStorageState(
     MY_DAILY_TODOLIST,
     'todo'
@@ -147,6 +153,9 @@ function DailyPlannerProvider({ children }) {
     );
     notify('success', 'Task deleted');
   }
+  function sortedItems(option) {
+    dispatch({ type: 'items/sort', payload: option });
+  }
   function deletedAllItems() {
     dispatch({ type: 'items/deleted' });
     setMyDailyTodoList([]);
@@ -170,6 +179,8 @@ function DailyPlannerProvider({ children }) {
         editedItem,
         deletedItem,
         countCompletedTodoItem,
+        sortedItems,
+        sortingOptions,
         deletedAllItems,
         notify,
       }}
