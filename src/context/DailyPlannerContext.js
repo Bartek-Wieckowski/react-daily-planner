@@ -50,12 +50,17 @@ const DailyPlannerContext = createContext();
 
 const initialState = {
   isDarkMode: false,
+  isLoading: true,
   myDailyTodoList: MY_DAILY_TODOLIST,
   sortingOptions: 'order',
 };
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'startLoading':
+      return { ...state, isLoading: true };
+    case 'stopLoading':
+      return { ...state, isLoading: false };
     case 'onDarkMode':
       return { ...state, isDarkMode: !state.isDarkMode };
     case 'item/created':
@@ -95,7 +100,7 @@ function reducer(state, action) {
 }
 
 function DailyPlannerProvider({ children }) {
-  const [{ isDarkMode, sortingOptions }, dispatch] = useReducer(
+  const [{ isDarkMode, sortingOptions, isLoading }, dispatch] = useReducer(
     reducer,
     initialState
   );
@@ -118,8 +123,13 @@ function DailyPlannerProvider({ children }) {
     }
     const intervalID = setInterval(resetLocalStorage, timeUntilMidnight);
 
+    const loadingTimeout = setTimeout(() => {
+      dispatch({ type: 'stopLoading' });
+    }, 150);
+
     return () => {
       clearInterval(intervalID);
+      clearTimeout(loadingTimeout);
     };
   }, []);
 
@@ -154,7 +164,11 @@ function DailyPlannerProvider({ children }) {
     notify('success', 'Task deleted');
   }
   function sortedItems(option) {
-    dispatch({ type: 'items/sort', payload: option });
+    dispatch({ type: 'startLoading' });
+    setTimeout(() => {
+      dispatch({ type: 'items/sort', payload: option });
+      dispatch({ type: 'stopLoading' });
+    }, 150);
   }
   function deletedAllItems() {
     dispatch({ type: 'items/deleted' });
@@ -183,6 +197,7 @@ function DailyPlannerProvider({ children }) {
         sortingOptions,
         deletedAllItems,
         notify,
+        isLoading,
       }}
     >
       {children}
