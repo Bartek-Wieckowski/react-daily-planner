@@ -10,7 +10,7 @@ export default function AddItem() {
     e.preventDefault();
 
     if (!body) {
-      notify('error', 'Please enter a valid body.');
+      notify('error', "You can't add an empty task");
       return;
     }
 

@@ -145,6 +145,7 @@ function DailyPlannerProvider({ children }) {
     setMyDailyTodoList((myDailyTodoList) =>
       myDailyTodoList.filter((todoItem) => todoItem.id !== id)
     );
+    notify('success', 'Task deleted');
   }
   function deletedAllItems() {
     dispatch({ type: 'items/deleted' });

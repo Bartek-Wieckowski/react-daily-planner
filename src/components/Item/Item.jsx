@@ -5,13 +5,17 @@ import './item.css';
 export default function Item({ todo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editingBody, setEditingBody] = useState(todo.body);
-  const { changeStatusItem, editedItem, deletedItem } = useDailyPlanner();
+  const { changeStatusItem, editedItem, deletedItem, notify } =
+    useDailyPlanner();
   const checkedTodo = todo.status === true ? 'checked' : '';
+
   function handleEditClick() {
     setIsEditing(true);
+    notify('warning', 'You try to change the current task');
   }
   function handleSaveClick() {
     editedItem(todo.id, editingBody);
+    notify('success', 'You have correctly changed the task');
     setIsEditing(false);
   }
   function handleKeyDown(e) {
