@@ -29,7 +29,7 @@ export default function AddItem() {
         <input
           type="text"
           className="form-input"
-          placeholder="write smoething"
+          placeholder="write something"
           value={body}
           onChange={(e) => setBody(e.target.value)}
         />
