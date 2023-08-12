@@ -61,6 +61,26 @@
   -ms-transform: rotate(45deg);
   transform: rotate(45deg) translate(-50%, -50%);
 }
+
+@keyframes pulse {
+  0% {
+    background-color: #eeabaa;
+  }
+  50% {
+    background-color: #9a0505;
+  }
+  100% {
+    background-color: #eeabaa;
+  }
+}
+
+.pulsating-input {
+  animation: pulse 2s infinite;
+  background-color: white;
+  color: white;
+  padding-left: 5px;
+}
+
 @media (max-width: 767.98px) {
   .item-wrapper {
     margin-top: 1rem;

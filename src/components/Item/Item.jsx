@@ -33,6 +33,7 @@ export default function Item({ todo }) {
             value={editingBody}
             onChange={(e) => setEditingBody(e.target.value)}
             onKeyDown={handleKeyDown}
+            className={isEditing ? 'pulsating-input' : ''}
           />
         ) : (
           <label className="label-input">
