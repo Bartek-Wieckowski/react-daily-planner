@@ -5,7 +5,7 @@ import TimeDateModeSwitcher from './components/TimeDateModeSwitcher/TimeDateMode
 import { useDailyPlanner } from './context/DailyPlannerContext';
 
 export default function App() {
-  const { isDarkMode } = useDailyPlanner();
+  const { isDarkMode, deletedAllItems } = useDailyPlanner();
   return (
     <div className={`app ${isDarkMode ? 'fake-dark-mode' : ''}`}>
       <TimeDateModeSwitcher />
@@ -18,6 +18,13 @@ export default function App() {
               <AddItem />
               <ListItems />
               <ProgressBar />
+              <hr />
+              <button
+                className="btn btn-del-all bg-danger text-white"
+                onClick={deletedAllItems}
+              >
+                DELETE ALL ITEMS
+              </button>
             </div>
           </div>
         </div>
