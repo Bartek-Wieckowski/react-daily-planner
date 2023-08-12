@@ -75,6 +75,11 @@ function reducer(state, action) {
         ...state,
         myDailyTodoList: [...state.myDailyTodoList, action.payload],
       };
+    case 'items/deleted':
+      return {
+        ...state,
+        myDailyTodoList: [],
+      };
 
     default:
       throw new Error('Unknown action');
@@ -120,6 +125,10 @@ function DailyPlannerProvider({ children }) {
       myDailyTodoList.filter((todoItem) => todoItem.id !== id)
     );
   }
+  function deletedAllItems() {
+    dispatch({ type: 'items/deleted' });
+    setMyDailyTodoList([]);
+  }
 
   return (
     <DailyPlannerContext.Provider
@@ -132,6 +141,7 @@ function DailyPlannerProvider({ children }) {
         editedItem,
         deletedItem,
         countCompletedTodoItem,
+        deletedAllItems,
       }}
     >
       {children}
