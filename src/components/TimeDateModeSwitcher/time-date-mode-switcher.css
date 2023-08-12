@@ -12,3 +12,9 @@
   cursor: pointer;
   filter: invert(1);
 }
+
+@media (max-width: 354.98px) {
+  .time-date-mode-switcher-wrapper {
+    font-size: 20px;
+  }
+}
