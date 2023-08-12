@@ -1,9 +1,11 @@
 import { useDailyPlanner } from '../../context/DailyPlannerContext';
 import Item from '../Item/Item';
+import Spinner from '../Spinner/Spinner';
 import './list-items.css';
 
 export default function ListItems() {
-  const { myDailyTodoList, sortingOptions, sortedItems } = useDailyPlanner();
+  const { myDailyTodoList, sortingOptions, sortedItems, isLoading } =
+    useDailyPlanner();
 
   let sortedList = [...myDailyTodoList];
 
@@ -20,6 +22,7 @@ export default function ListItems() {
   if (sortingOptions === 'alphabetically') {
     sortedList.sort((a, b) => a.body.localeCompare(b.body));
   }
+  if (isLoading) return <Spinner />;
 
   return (
     <>
