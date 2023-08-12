@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from 'react';
 import useLocalStorageState from '../hooks/useLocalStorageState';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MY_DAILY_TODOLIST = [
   {
@@ -80,6 +82,9 @@ function reducer(state, action) {
         ...state,
         myDailyTodoList: [],
       };
+    case 'notify':
+      action.payload.notify(action.payload.type, action.payload.message);
+      return { ...state };
 
     default:
       throw new Error('Unknown action');
@@ -146,6 +151,12 @@ function DailyPlannerProvider({ children }) {
     setMyDailyTodoList([]);
   }
 
+  function notify(type, message) {
+    toast[type](message, {
+      position: toast.POSITION.TOP_CENTER,
+    });
+  }
+
   return (
     <DailyPlannerContext.Provider
       value={{
@@ -158,6 +169,7 @@ function DailyPlannerProvider({ children }) {
         deletedItem,
         countCompletedTodoItem,
         deletedAllItems,
+        notify,
       }}
     >
       {children}
