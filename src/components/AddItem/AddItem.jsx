@@ -3,14 +3,14 @@ import { useDailyPlanner } from '../../context/DailyPlannerContext';
 import './add-item.css';
 
 export default function AddItem() {
-  const { createdItem } = useDailyPlanner();
+  const { createdItem, notify } = useDailyPlanner();
   const [body, setBody] = useState('');
 
   function handleSubmit(e) {
     e.preventDefault();
 
     if (!body) {
-      console.log('error- dodac notify popup');
+      notify('error', 'Please enter a valid body.');
       return;
     }
 
@@ -21,6 +21,7 @@ export default function AddItem() {
     };
 
     createdItem(newItem);
+    notify('success', 'Item has been added!');
     setBody('');
   }
   return (
