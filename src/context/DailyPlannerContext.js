@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useEffect, useReducer } from 'react';
 import useLocalStorageState from '../hooks/useLocalStorageState';
 
 const MY_DAILY_TODOLIST = [
@@ -95,6 +95,22 @@ function DailyPlannerProvider({ children }) {
   const countCompletedTodoItem = myDailyTodoList.filter(
     (todoItem) => todoItem.status
   ).length;
+
+  useEffect(() => {
+    const now = new Date();
+    const midnight = new Date(now);
+    midnight.setHours(24, 0, 0, 0);
+    const timeUntilMidnight = midnight - now;
+
+    function resetLocalStorage() {
+      localStorage.removeItem('todo');
+    }
+    const intervalID = setInterval(resetLocalStorage, timeUntilMidnight);
+
+    return () => {
+      clearInterval(intervalID);
+    };
+  }, []);
 
   function handleDarkMode() {
     dispatch({ type: 'onDarkMode' });
