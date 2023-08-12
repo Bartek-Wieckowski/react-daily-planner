@@ -26,13 +26,18 @@ export default function ListItems() {
 
   return (
     <>
-      <div className="filtered-actions">
-        <select value={sortingOptions} onChange={handleSortChange}>
-          <option value="order">Sort by order</option>
-          <option value="status">Sort by status</option>
-          <option value="alphabetically">Sort alphabetically</option>
-        </select>
-      </div>
+      {myDailyTodoList.length > 0 && (
+        <>
+          <div className="filtered-actions">
+            <select value={sortingOptions} onChange={handleSortChange}>
+              <option value="order">Sort by order</option>
+              <option value="status">Sort by status</option>
+              <option value="alphabetically">Sort alphabetically</option>
+            </select>
+          </div>
+          <hr />
+        </>
+      )}
       <ul className="list-items">
         {sortedList.map((item) => (
           <Item todo={item} key={item.id} />
