@@ -95,3 +95,19 @@ p {
   max-width: 100%;
   padding: 0 0.35rem;
 }
+hr {
+  margin: 0.3rem 0;
+}
+.btn-del-all {
+  display: block;
+  margin-left: auto;
+}
+@media (max-width: 767.98px) {
+  hr {
+    display: none;
+  }
+  .btn-del-all {
+    margin-left: unset;
+    margin: 0.5rem auto 0;
+  }
+}
