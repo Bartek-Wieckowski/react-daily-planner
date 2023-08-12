@@ -3,6 +3,8 @@ import ListItems from './components/ListItems/ListItems';
 import ProgressBar from './components/ProgressBar/ProgressBar';
 import TimeDateModeSwitcher from './components/TimeDateModeSwitcher/TimeDateModeSwitcher';
 import { useDailyPlanner } from './context/DailyPlannerContext';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App() {
   const { isDarkMode, deletedAllItems } = useDailyPlanner();
@@ -14,6 +16,7 @@ export default function App() {
         <div className="row">
           <div className="col">
             <div className="wrapper">
+              <ToastContainer />
               <h1>Daily Plan 📝</h1>
               <AddItem />
               <ListItems />
