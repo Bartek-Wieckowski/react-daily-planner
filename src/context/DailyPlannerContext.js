@@ -117,7 +117,7 @@ function DailyPlannerProvider({ children }) {
   }
   function createdItem(newItem) {
     dispatch({ type: 'item/created', payload: newItem });
-    setMyDailyTodoList([...myDailyTodoList, newItem]);
+    setMyDailyTodoList([newItem, ...myDailyTodoList]);
   }
   function changeStatusItem(id) {
     dispatch({ type: 'item/changeStatus', payload: id });
